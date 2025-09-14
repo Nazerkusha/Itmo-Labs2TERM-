@@ -1,0 +1,37 @@
+html {
+    height: 100%;
+    width: 100%
+}
+.main {
+    background-image: url("../pictures/background.jpg");
+    background-size: 100% auto;
+}
+header {
+    text-align: center;
+    padding: 1% 0%;
+    margin-bottom: 1%;
+    background: linear-gradient(135deg, #c43ba9 0%, #71108c 100%);
+    color: #F06AB2;
+    border-radius: 10px;
+}
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1%;
+    font-family: sans-serif;
+}
+p {
+    font-size: 2.0rem;
+    margin-bottom: 1%;
+    font-family: sans-serif;
+}
+#float-right {
+    float: right;
+    width: 5%;
+}
+.gt img{
+    align-items: right;
+    transition: transform 0.2s;
+}
+.gt:hover img{
+    transform: scale(1.1);
+}

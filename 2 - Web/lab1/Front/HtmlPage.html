@@ -1,0 +1,95 @@
+</head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Веб-программирование; Лабораторная №1</title>
+
+    <link rel="stylesheet" href="styles/main.css">
+    <script defer src="index.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Лабораторная работа №1; Вариант 465755</h1>
+        <p>Джантуре Назерке</p>
+        <p>Группа: Р3208</p>
+    </header>
+    
+    <div class="github-link">
+        <a href="https://github.com/Nazerkusha" target="_blank">
+            <img src="pictures/GitLable.png" alt="GitHub">
+        </a>
+    </div>
+    
+    <div class="container">
+        <div class="parametr-container">
+            <h2>Параметры точки</h2>
+            <form method="POST" id="point-form">
+                <div class="parametr-group">
+                    <label>Выберите R:</label>
+                    <div class="radio-group" id="r-radio">
+                        <label><input type="radio" name="r-value" value="1" required> 1</label>
+                        <label><input type="radio" name="r-value" value="1.5"> 1.5</label>
+                        <label><input type="radio" name="r-value" value="2"> 2</label>
+                        <label><input type="radio" name="r-value" value="2.5"> 2.5</label>
+                        <label><input type="radio" name="r-value" value="3"> 3</label>
+                    </div>
+                </div>
+                
+                <div class="parametr-group">
+                    <label>Выберите X:</label>
+                    <div class="radio-group" id="x-radio">
+                        <label><input type="radio" name="x-value" value="-3" required> -3</label>
+                        <label><input type="radio" name="x-value" value="-2"> -2</label>
+                        <label><input type="radio" name="x-value" value="-1"> -1</label>
+                        <label><input type="radio" name="x-value" value="0"> 0</label>
+                        <label><input type="radio" name="x-value" value="1"> 1</label>
+                        <label><input type="radio" name="x-value" value="2"> 2</label>
+                        <label><input type="radio" name="x-value" value="3"> 3</label>
+                        <label><input type="radio" name="x-value" value="4"> 4</label>
+                        <label><input type="radio" name="x-value" value="5"> 5</label>
+                    </div>
+                </div>
+                
+                <div class="parametr-group">
+                    <label for="y-value">Введите Y:</label>
+                    <input type="text" id="y-value" placeholder="Введите Y от -5 до 5" required pattern="-?\d+(\.\d+)?" oninput="validateY()">
+                    <div class="error" id="y-error">Y должен быть числом от -5 до 5</div>
+                </div>
+                <div class="buttons-container">
+                    <button type="submit" class="image-button">
+                        <img src="pictures/Button.png" alt="Проверить точку">
+                    </button>
+                    <button type="reset" class="image-buttonClear">
+                        <img src="pictures/ButtonClear.png" alt="Очистить">
+                    </button>
+                </div>
+                
+                
+            </form>
+        </div>
+        
+        <div class="graph-container">
+            <h2>График области</h2>
+            <div class="graph"></div>
+        </div>
+        
+        <div class="results-container">
+            <h2>Результаты проверки</h2>
+            <table id="results-table">
+                <thead>
+                    <tr>
+                        <th>R</th>
+                        <th>X</th>
+                        <th>Y</th>
+                        <th>Время запроса</th>
+                        <th>Результат</th>
+                        <th>Время выполнения (мс)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Результаты будут добавляться здесь -->
+                </tbody>
+            </table>
+        </div>
+    </div>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Веб-программирование; Лабораторная №1</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&family=Pixelify+Sans:wght@400..700&family=SUSE:wght@100..800&display=swap"
+          rel="stylesheet">
+</head>
+<body>
+<header>
+    <h1>Лабораторная работа №1; Вариант 465755</h1>
+    <p>Джантуре Назерке</p>
+    <p>Группа: Р3208</p>
+</header>
+
+<div class="github-link">
+    <a href="https://github.com/Nazerkusha" target="_blank">
+        <img src="pictures/GitLable.png" alt="GitHub">
+    </a>
+</div>
+
+<div class="container">
+    <div class="parametr-container">
+        <h2>Параметры точки</h2>
+        <form id="form-getData">
+            <div class="parametr-group">
+                <label>Выберите R:</label>
+                <div class="radio-group" id="r-radio">
+                    <label><input type="radio" name="r" value="1" required> 1</label>
+                    <label><input type="radio" name="r" value="1.5"> 1.5</label>
+                    <label><input type="radio" name="r" value="2"> 2</label>
+                    <label><input type="radio" name="r" value="2.5"> 2.5</label>
+                    <label><input type="radio" name="r" value="3"> 3</label>
+                </div>
+                <div class="error" id="rError">Ошибка в r</div>
+            </div>
+
+            <div class="parametr-group">
+                <label>Выберите X:</label>
+                <div class="radio-group" id="x-radio">
+                    <label><input type="radio" name="x" value="-3" required> -3</label>
+                    <label><input type="radio" name="x" value="-2"> -2</label>
+                    <label><input type="radio" name="x" value="-1"> -1</label>
+                    <label><input type="radio" name="x" value="0"> 0</label>
+                    <label><input type="radio" name="x" value="1"> 1</label>
+                    <label><input type="radio" name="x" value="2"> 2</label>
+                    <label><input type="radio" name="x" value="3"> 3</label>
+                    <label><input type="radio" name="x" value="4"> 4</label>
+                    <label><input type="radio" name="x" value="5"> 5</label>
+                </div>
+                <div class="error" id="xError">Ошибка в x</div>
+            </div>
+
+            <div class="parametr-group">
+                <label for="y">Введите Y:</label>
+                <input type="text" id="y" placeholder="Введите Y от -5 до 5" required pattern="-?\d+(\.\d+)?" oninput="validateY()">
+                <div class="error" id="yError">Y должен быть числом от -5 до 5</div>
+            </div>
+            <div class="buttons-container">
+                <button type="submit" class="image-button" onclick="update()">
+                    <img src="pictures/Button.png" alt="Проверить точку">
+                </button>
+                <button type="reset" class="image-buttonClear" onclick="clearTable()">
+                    <img src="pictures/ButtonClear.png" alt="Очистить">
+                </button>
+            </div>
+
+
+        </form>
+    </div>
+
+    <div class="graph-container">
+        <h2>График области</h2>
+        <div class="graph"></div>
+    </div>
+
+    <div class="results-container">
+        <h2>Результаты проверки</h2>
+        <table id="results-table">
+            <thead>
+            <tr>
+                <th>R</th>
+                <th>X</th>
+                <th>Y</th>
+                <th>Время запроса</th>
+                <th>Результат</th>
+                <th>Время выполнения (мс)</th>
+            </tr>
+            </thead>
+            <tbody>
+            <!-- Результаты -->
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+    <script src="js/clearT.js" defer></script>
+    <script src="js/valid.js" defer></script>
+    <script src="js/updateT.js" defer></script>
+</html>

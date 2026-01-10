@@ -1,0 +1,84 @@
+services:
+  influxdb:
+    image: influxdb:2.0
+    container_name: lab4-influxdb
+    ports:
+      - "8086:8086"
+    environment:
+      - DOCKER_INFLUXDB_INIT_MODE=setup
+      - DOCKER_INFLUXDB_INIT_USERNAME=465755
+      - DOCKER_INFLUXDB_INIT_PASSWORD=11082006
+      - DOCKER_INFLUXDB_INIT_ORG=lab4
+      - DOCKER_INFLUXDB_INIT_BUCKET=lab4
+      - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=lab4-super-secret-token
+    volumes:
+      - influxdb-data:/var/lib/influxdb2
+    networks:
+      - lab4-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8086/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  auth-service:
+    build:
+      context: ./auth-service
+      dockerfile: Dockerfile
+    container_name: lab4-auth-service
+    ports:
+      - "8081:8080"
+    environment:
+      - INFLUXDB_URL=http://influxdb:8086
+      - INFLUXDB_TOKEN=lab4-super-secret-token
+      - INFLUXDB_ORG=lab4
+      - INFLUXDB_BUCKET=lab4
+      - JWT_SECRET=your-super-secret-jwt-key-min-256-bits
+    depends_on:
+      influxdb:
+        condition: service_healthy
+    networks:
+      - lab4-network
+    restart: unless-stopped
+
+  geometry-service:
+    build:
+      context: ./geometry-service
+      dockerfile: Dockerfile
+    container_name: lab4-geometry-service
+    ports:
+      - "8082:8080"
+    environment:
+      - INFLUXDB_URL=http://influxdb:8086
+      - INFLUXDB_TOKEN=lab4-super-secret-token
+      - INFLUXDB_ORG=lab4
+      - INFLUXDB_BUCKET=lab4
+      - JWT_SECRET=your-super-secret-jwt-key-min-256-bits
+    depends_on:
+      influxdb:
+        condition: service_healthy
+    networks:
+      - lab4-network
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: lab4-frontend
+    ports:
+      - "9080:8080"
+    depends_on:
+      - auth-service
+      - geometry-service
+    networks:
+      - lab4-network
+    restart: unless-stopped
+
+networks:
+  lab4-network:
+    driver: bridge
+
+volumes:
+  influxdb-data:
+    driver: local

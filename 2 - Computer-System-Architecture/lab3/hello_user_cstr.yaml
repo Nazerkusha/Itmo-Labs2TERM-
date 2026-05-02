@@ -1,0 +1,19 @@
+limit: 2000
+memory_size: 8192
+
+memory_mapped_io:
+  0x80: [78, 97, 122, 101, 114, 107, 101, 10]
+  0x84: []
+
+reports:
+  - name: "Execution trace"
+    slice: all
+    view: |
+      {pc}: {instruction} {pc:label}
+
+  - name: "Result verification"
+    slice: last
+    view: |
+      numio[0x84]: {io:0x84:sym}
+    assert: |
+      numio[0x84]: "" >>> "What is your name?\nHello, Nazerke!"
